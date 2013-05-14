@@ -38,14 +38,10 @@
         return @"只有图片，请欣赏图片吧";
     }
     content = [content substringToIndex:range.location + 1];
-    // 倒序找第一个右尖括号
-    range = [content rangeOfString:@";" options:NSBackwardsSearch];
-    if (range.length) {
-        content = [content substringFromIndex:range.location + 1];
-    }else{
-        range = [content rangeOfString:@">" options:NSBackwardsSearch];
-        content = [content substringFromIndex:range.location + 1];
-    }
+    // 倒序找第一个标识
+    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@";>"];
+    range = [content rangeOfCharacterFromSet:set options:NSBackwardsSearch];
+    content = [content substringFromIndex:range.location + 1];
     
     // 去除不知名的字符 和　（一共两个字符，后面那个不是空格，不知道是什么）
     NSCharacterSet *LCset = [NSCharacterSet characterSetWithCharactersInString:@" 　\n"];
@@ -127,9 +123,19 @@
 {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
     // 一般的显示格式
-    NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
-    [df setDateFormat:@"MM-d hh:mm"];
-    return [df stringFromDate:date];
+//    NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
+//    [df setDateFormat:@"MM-d hh:mm"];
+//    return [df stringFromDate:date];
+    
+    NSTimeInterval time = [date timeIntervalSinceNow];
+    time = -time;
+    if (time < 60*30) {
+        return @"刚刚";
+    }else if (time < 60*60*24){
+        return [NSString stringWithFormat:@"%d个小时前", (int)time/(60*60)];
+    }else{
+        return [NSString stringWithFormat:@"%d天前", (int)time/(60*60*24)];
+    }
     
 }
 

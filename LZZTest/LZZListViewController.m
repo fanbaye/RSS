@@ -84,6 +84,7 @@
     
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     if (![ud objectForKey:@"isFirstOpenApp"]) {
+        _isLoading = YES;
         [self getNewsFromInternet];
         [ud setBool:YES forKey:@"isFirstOpenApp"];
         [ud synchronize];
