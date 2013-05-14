@@ -20,6 +20,7 @@
 
 {
     UIScrollView *_scrollView;
+    UILabel *_pageLabel;
     int _newsMaxId;
 }
 
@@ -74,10 +75,19 @@
     [headView addSubview:headBottomLine];
     [headBottomLine release];
     
-    UIImageView *headRight = [[UIImageView alloc] initWithFrame:CGRectMake(180, 0, 140, 44)];
-    headRight.image = [UIImage imageNamed:@"shuoming"];
+    UIImageView *headRight = [[UIImageView alloc] initWithFrame:CGRectMake(238, 9, 68, 27)];
+    headRight.image = [UIImage imageNamed:@"pageShow"];
     [headView addSubview:headRight];
     [headRight release];
+    
+    _pageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 48, 17)];
+    _pageLabel.textAlignment = NSTextAlignmentCenter;
+    _pageLabel.font = [UIFont systemFontOfSize:14];
+    _pageLabel.textColor = [UIColor whiteColor];
+    _pageLabel.backgroundColor = [UIColor clearColor];
+    [headRight addSubview:_pageLabel];
+    [_pageLabel release];
+    
     
     LZZDatabaseManager *db = [[LZZDatabaseManager alloc] init];
     _newsMaxId = [db getMaxNewsId];
@@ -103,6 +113,7 @@
 {
     [super viewWillAppear:animated];
     _newsId = _newsOriginId;
+    _pageLabel.text = [NSString stringWithFormat:@"第%d条", _newsId + 1];
     [self changeViewController:_newsId];
     [self showAlert];
 }
@@ -161,6 +172,7 @@
             [self changeViewController:_newsId];
         }
     }
+    _pageLabel.text = [NSString stringWithFormat:@"第%d条", _newsId + 1];
     [self showAlert];
 }
 

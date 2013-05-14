@@ -62,7 +62,7 @@
 		04E6CE29174262B400079CDB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E6CE27174262B400079CDB /* Default.png */; };
 		04E6CE2A174262B400079CDB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E6CE28174262B400079CDB /* Default@2x.png */; };
 		04E6CE2C174262C400079CDB /* head.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E6CE2B174262C400079CDB /* head.png */; };
-		04E6CE2E17426C7F00079CDB /* shuoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E6CE2D17426C7E00079CDB /* shuoming.png */; };
+		04F0151A174279AD0025AA36 /* pageShow.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F01519174279AD0025AA36 /* pageShow.png */; };
 		04F1998F174128C10027902B /* NSString+Hashing.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F1998E174128C10027902B /* NSString+Hashing.m */; };
 		04F1999217412E6F0027902B /* LZZFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F1999117412E6F0027902B /* LZZFrameViewController.m */; };
 /* End PBXBuildFile section */
@@ -155,7 +155,7 @@
 		04E6CE27174262B400079CDB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		04E6CE28174262B400079CDB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		04E6CE2B174262C400079CDB /* head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head.png; sourceTree = "<group>"; };
-		04E6CE2D17426C7E00079CDB /* shuoming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shuoming.png; sourceTree = "<group>"; };
+		04F01519174279AD0025AA36 /* pageShow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pageShow.png; sourceTree = "<group>"; };
 		04F1998D174128C10027902B /* NSString+Hashing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hashing.h"; sourceTree = "<group>"; };
 		04F1998E174128C10027902B /* NSString+Hashing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hashing.m"; sourceTree = "<group>"; };
 		04F1999017412E6F0027902B /* LZZFrameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZZFrameViewController.h; sourceTree = "<group>"; };
@@ -266,7 +266,7 @@
 		047CE3021740DE6E0064A6C0 /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				04E6CE2D17426C7E00079CDB /* shuoming.png */,
+				04F01519174279AD0025AA36 /* pageShow.png */,
 				04E6CE2B174262C400079CDB /* head.png */,
 				04E6CE001741EEC500079CDB /* imagePlaceholder.png */,
 				04E6CDFE1741E37500079CDB /* headBottomLine.png */,
@@ -488,7 +488,7 @@
 				04E6CE29174262B400079CDB /* Default.png in Resources */,
 				04E6CE2A174262B400079CDB /* Default@2x.png in Resources */,
 				04E6CE2C174262C400079CDB /* head.png in Resources */,
-				04E6CE2E17426C7F00079CDB /* shuoming.png in Resources */,
+				04F0151A174279AD0025AA36 /* pageShow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
