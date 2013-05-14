@@ -33,29 +33,40 @@
 + (NSString *)newsSubTitleFromContent:(NSString *)content
 {
     // 取正文第一句作为内容简介，先找句号
-    NSRange range = [content rangeOfString:@"。"];
+    
+    NSRange rangeLeft = [content rangeOfString:@"<p"];
+    NSRange rangeRight = [content rangeOfString:@"</p>"];
+    NSString *tmp = [content substringWithRange:NSMakeRange(rangeLeft.location, rangeRight.location - rangeLeft.location + 4)];
+    while ([tmp rangeOfString:@"img"].length || [tmp rangeOfString:@"center"].length) {
+        content = [content substringFromIndex:rangeRight.location + 3];
+        rangeLeft = [content rangeOfString:@"<p"];
+        rangeRight = [content rangeOfString:@"</p>"];
+        tmp = [content substringWithRange:NSMakeRange(rangeLeft.location, rangeRight.location - rangeLeft.location + 4)];
+    }
+    
+    NSRange range = [tmp rangeOfString:@"。"];
     if (!range.length) {
         return @"只有图片，请欣赏图片吧";
     }
-    content = [content substringToIndex:range.location + 1];
+    tmp = [tmp substringToIndex:range.location + 1];
     // 倒序找第一个标识
     NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@";>"];
-    range = [content rangeOfCharacterFromSet:set options:NSBackwardsSearch];
-    content = [content substringFromIndex:range.location + 1];
+    range = [tmp rangeOfCharacterFromSet:set options:NSBackwardsSearch];
+    tmp = [tmp substringFromIndex:range.location + 1];
     
     // 去除不知名的字符 和　（一共两个字符，后面那个不是空格，不知道是什么）
     NSCharacterSet *LCset = [NSCharacterSet characterSetWithCharactersInString:@" 　\n"];
-    range = [content rangeOfCharacterFromSet:LCset];
+    range = [tmp rangeOfCharacterFromSet:LCset];
     while (range.length) {
-        content = [content substringFromIndex:1];
-        range = [content rangeOfCharacterFromSet:LCset];
+        tmp = [tmp substringFromIndex:1];
+        range = [tmp rangeOfCharacterFromSet:LCset];
     }
     
     // 如果第一句太长就截断
-    if ([content length] < 29) {
-        return content;
+    if ([tmp length] < 29) {
+        return tmp;
     }else{
-        return [NSString stringWithFormat:@"%@...", [content substringToIndex:28]];
+        return [NSString stringWithFormat:@"%@...", [tmp substringToIndex:28]];
     }
     
 }
@@ -82,7 +93,7 @@
         NSRange rangeRight = [content rangeOfString:@"</p>"];
         NSString *tmp = [content substringWithRange:NSMakeRange(rangeLeft.location, rangeRight.location - rangeLeft.location + 4)];
         
-        if ([tmp rangeOfString:@"&#160"].length || [tmp rangeOfString:@"chcom"].length) {
+        if ([tmp rangeOfString:@"chcom"].length) {
             content = [content substringFromIndex:rangeRight.location + 3];
             rangeLeft = [content rangeOfString:@"<p"];
             continue;
@@ -96,7 +107,8 @@
             NSRange rangeDescription = [tmp rangeOfString:@"center"];
             if (rangeDescription.length) {
                 [array addObject:@"1"];
-                [array addObject:[self getDescriptionFromContent:tmp]];
+                tmp = [self getDescriptionFromContent:tmp];
+                [array addObject:[self deleteSpecialString:tmp]];
             }else{
                 NSRange rangeStrong = [tmp rangeOfString:@"strong"];
                 if (rangeStrong.length) {
@@ -104,10 +116,11 @@
                     NSRange rangeStrongRight = [tmp rangeOfString:@"</strong>"];
                     tmp = [tmp substringWithRange:NSMakeRange(rangeStrongLeft.location + 8, rangeStrongRight.location - rangeStrongLeft.location - 8)];
                     [array addObject:@"2"];
-                    [array addObject:tmp];
+                    [array addObject:[self deleteSpecialString:tmp]];
                 }else{
                     [array addObject:@"3"];
-                    [array addObject:[self getDescriptionFromContent:tmp]];
+                    tmp = [self getDescriptionFromContent:tmp];
+                    [array addObject:[self deleteSpecialString:tmp]];
                 }
             }
             
@@ -117,6 +130,8 @@
     }
     return array;
 }
+
+
 
 // 将时间戳转换为想显示的格式
 + (NSString *)timeIntervalToDate:(NSTimeInterval)timeInterval
@@ -136,11 +151,23 @@
     }else{
         return [NSString stringWithFormat:@"%d天前", (int)time/(60*60*24)];
     }
-    
+
 }
 
 // 私有
+
++ (NSString *)deleteSpecialString:(NSString *)string
+{
+    NSMutableString *mStr = [NSMutableString stringWithString:string];
+    NSRange range = [mStr rangeOfString:@"&#160;"];
+    while (range.length) {
+        [mStr deleteCharactersInRange:range];
+        range = [mStr rangeOfString:@"&#160;"];
+    }
+    return mStr;
+}
 // 得到正文一个段落
+
 + (NSString *)getDescriptionFromContent:(NSString *)content
 {
     NSRange rangeLeft = [content rangeOfString:@">"];

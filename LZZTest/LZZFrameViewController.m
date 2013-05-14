@@ -74,6 +74,11 @@
     [headView addSubview:headBottomLine];
     [headBottomLine release];
     
+    UIImageView *headRight = [[UIImageView alloc] initWithFrame:CGRectMake(180, 0, 140, 44)];
+    headRight.image = [UIImage imageNamed:@"shuoming"];
+    [headView addSubview:headRight];
+    [headRight release];
+    
     LZZDatabaseManager *db = [[LZZDatabaseManager alloc] init];
     _newsMaxId = [db getMaxNewsId];
     [db close];
@@ -167,6 +172,7 @@
     }else if (_newsId == _newsMaxId && currentOffSizeX > 320){
         scrollView.contentOffset = CGPointMake(320, 0);
     }
+    
 }
 
 - (void)didReceiveMemoryWarning

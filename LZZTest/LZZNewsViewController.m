@@ -48,7 +48,7 @@
     [titleLabel release];
     
     UILabel *categoryLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 48, 70, 14)];
-    categoryLabel.font = [UIFont systemFontOfSize:12];
+    categoryLabel.font = [UIFont systemFontOfSize:13];
     categoryLabel.textColor = [UIColor grayColor];
     categoryLabel.backgroundColor = [UIColor clearColor];
     categoryLabel.text = _newsCategory;
@@ -56,7 +56,7 @@
     [categoryLabel release];
     
     UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(98, 48, 76, 14)];
-    timeLabel.font = [UIFont systemFontOfSize:12];
+    timeLabel.font = [UIFont systemFontOfSize:13];
     timeLabel.textColor = [UIColor grayColor];
     timeLabel.backgroundColor = [UIColor clearColor];
     timeLabel.text = [LZZUniversal timeIntervalToDate:[_newsTime doubleValue]];
