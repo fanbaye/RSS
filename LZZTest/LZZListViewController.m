@@ -14,6 +14,7 @@
 #import "LZZDatabaseManager.h"
 #import "NSString+Hashing.h"
 #import "LZZFrameViewController.h"
+#import "LZZSettingViewController.h"
 
 @interface LZZListViewController ()
 
@@ -29,6 +30,7 @@
     BOOL _isLoading;
     EGORefreshTableHeaderView *_refreshHeadView;
     LZZRefreshTableFooterView *_refreshFootView;
+    LZZSettingViewController *_svc;
 }
 
 @synthesize dataArray = _dataArray;
@@ -36,6 +38,7 @@
 - (void)dealloc
 {
     [_fvc release];
+    [_svc release];
     self.dataArray = nil;
     [super dealloc];
 }
@@ -55,6 +58,8 @@
     _isLoading = NO;
     
     _fvc = [[LZZFrameViewController alloc] init];
+    _svc = [[LZZSettingViewController alloc] init];
+    _svc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 	// Do any additional setup after loading the view.
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, 320, 480-44-20)];
@@ -78,9 +83,16 @@
     [_refreshFootView release];
     
     UIImageView *headView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"head"]];
+    headView.userInteractionEnabled = YES;
     headView.frame = CGRectMake(0, 0, 320, 44);
     [self.view addSubview:headView];
     [headView release];
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(275, 5, 50, 34);
+    [btn setImage:[UIImage imageNamed:@"setbottom"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(settingClick) forControlEvents:UIControlEventTouchUpInside];
+    [headView addSubview:btn];
     
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     if (![ud objectForKey:@"isFirstOpenApp"]) {
@@ -91,6 +103,13 @@
     }else{
         [self getNewsFromDatabase];
     }
+}
+
+- (void)settingClick
+{
+    [self presentViewController:_svc animated:YES completion:^{
+        
+    }];
 }
 
 - (void)getNewsFromInternet

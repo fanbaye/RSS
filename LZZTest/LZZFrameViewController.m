@@ -94,6 +94,32 @@
     [db close];
     [db release];
     
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    if (![ud objectForKey:@"isFirstOpenDetail"]) {
+        UIImageView *guideView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
+        guideView.userInteractionEnabled = YES;
+        guideView.image = [UIImage imageNamed:@"guide"];
+        guideView.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:guideView];
+        [guideView release];
+        
+        UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideGuideView:)];
+        [guideView addGestureRecognizer:tgr];
+        [tgr release];
+        
+        [ud setBool:YES forKey:@"isFirstOpenDetail"];
+        [ud synchronize];
+    }
+}
+
+- (void)hideGuideView:(UITapGestureRecognizer *)sender
+{
+    [UIView animateWithDuration:1.5 animations:^{
+        sender.view.alpha = 0;
+    } completion:^(BOOL finished) {
+        [sender.view removeFromSuperview];
+    }];
+
 }
 
 - (void)showAlert
