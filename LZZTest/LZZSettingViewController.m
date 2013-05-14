@@ -59,6 +59,7 @@
     [_cacheLabel release];
 }
 
+// 回列表页
 - (void)backToList
 {
     [self dismissViewControllerAnimated:YES completion:^{
@@ -66,6 +67,7 @@
     }];
 }
 
+// 计算缓存大小
 - (void)getFilesSize
 {
     _size = 0;
@@ -80,6 +82,7 @@
     _cacheLabel.text = [NSString stringWithFormat:@"%0.1f", _size/1024/1024];
 }
 
+// 清缓存
 - (void)clearCache
 {
     NSFileManager *fm = [NSFileManager defaultManager];
@@ -90,6 +93,7 @@
     [self getFilesSize];
 }
 
+// 出现的时候计算一下缓存
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

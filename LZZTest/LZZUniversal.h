@@ -16,4 +16,5 @@
 + (NSMutableArray *)getNewsContents:(NSString *)content;
 + (NSString *)timeIntervalToDate:(NSTimeInterval)timeInterval;
 + (NSString *)newsTitleFromXMLTitle:(NSString *)XMLTitle;
+
 @end

@@ -29,10 +29,10 @@
     return XMLTitle;
 }
 
-
+// 得到内容简介
 + (NSString *)newsSubTitleFromContent:(NSString *)content
 {
-    // 取正文第一句作为内容简介，先找句号
+    // 取正文第一句作为内容简介，先找正文
     
     NSRange rangeLeft = [content rangeOfString:@"<p"];
     NSRange rangeRight = [content rangeOfString:@"</p>"];
@@ -43,7 +43,7 @@
         rangeRight = [content rangeOfString:@"</p>"];
         tmp = [content substringWithRange:NSMakeRange(rangeLeft.location, rangeRight.location - rangeLeft.location + 4)];
     }
-    
+    // 再找句号
     NSRange range = [tmp rangeOfString:@"。"];
     if (!range.length) {
         return @"只有图片，请欣赏图片吧";
@@ -84,7 +84,7 @@
     return content;
 }
 
-// 将正文分类型保存为数组，0是图片，1是图片的标题描述，2是粗体文本，3是普通文本
+// 将正文分类型保存为数组，4类，0是图片，1是图片的标题，2是粗体文本，3是普通文本
 + (NSMutableArray *)getNewsContents:(NSString *)content
 {
     NSMutableArray *array = [[NSMutableArray alloc] init];
@@ -142,6 +142,7 @@
 //    [df setDateFormat:@"MM-d hh:mm"];
 //    return [df stringFromDate:date];
     
+    // 有趣些的时间显示格式
     NSTimeInterval time = [date timeIntervalSinceNow];
     time = -time;
     if (time < 60*30) {
@@ -154,28 +155,7 @@
 
 }
 
-// 私有
-
-+ (NSString *)deleteSpecialString:(NSString *)string
-{
-    NSMutableString *mStr = [NSMutableString stringWithString:string];
-    NSRange range = [mStr rangeOfString:@"&#160;"];
-    while (range.length) {
-        [mStr deleteCharactersInRange:range];
-        range = [mStr rangeOfString:@"&#160;"];
-    }
-    return mStr;
-}
-// 得到正文一个段落
-
-+ (NSString *)getDescriptionFromContent:(NSString *)content
-{
-    NSRange rangeLeft = [content rangeOfString:@">"];
-    NSRange rangeRight = [content rangeOfString:@"</p>"];
-    return [content substringWithRange:NSMakeRange(rangeLeft.location + 1, rangeRight.location - rangeLeft.location - 1)];
-}
-
-// 将从xml得到的时间格式转换为可识别的格式
+// 将从xml得到的时间格式转换为可识别的格式的时间戳
 + (NSTimeInterval)dateFormatter:(NSString *)timeString
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -186,6 +166,25 @@
     return timeInterval;
 }
 
+// 删除奇怪字符
++ (NSString *)deleteSpecialString:(NSString *)string
+{
+    NSMutableString *mStr = [NSMutableString stringWithString:string];
+    NSRange range = [mStr rangeOfString:@"&#160;"];
+    while (range.length) {
+        [mStr deleteCharactersInRange:range];
+        range = [mStr rangeOfString:@"&#160;"];
+    }
+    return mStr;
+}
+
+// 得到正文一个段落
++ (NSString *)getDescriptionFromContent:(NSString *)content
+{
+    NSRange rangeLeft = [content rangeOfString:@">"];
+    NSRange rangeRight = [content rangeOfString:@"</p>"];
+    return [content substringWithRange:NSMakeRange(rangeLeft.location + 1, rangeRight.location - rangeLeft.location - 1)];
+}
 
 
 @end

@@ -41,7 +41,6 @@
 		047CE3511740E6DA0064A6C0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047CE3501740E6DA0064A6C0 /* CFNetwork.framework */; };
 		047CE3531740E6E40064A6C0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047CE3521740E6E40064A6C0 /* MobileCoreServices.framework */; };
 		047CE3551740E6E90064A6C0 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 047CE3541740E6E90064A6C0 /* libz.1.2.5.dylib */; };
-		047CE3571740E91A0064A6C0 /* list.txt in Resources */ = {isa = PBXBuildFile; fileRef = 047CE3561740E91A0064A6C0 /* list.txt */; };
 		047CE35B1740E9960064A6C0 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 047CE35A1740E9960064A6C0 /* GDataXMLNode.m */; };
 		047CE35E1740FAFA0064A6C0 /* LZZUniversal.m in Sources */ = {isa = PBXBuildFile; fileRef = 047CE35D1740FAFA0064A6C0 /* LZZUniversal.m */; };
 		047CE3631741138D0064A6C0 /* LZZNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047CE3621741138D0064A6C0 /* LZZNewsViewController.m */; };
@@ -135,7 +134,6 @@
 		047CE3501740E6DA0064A6C0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		047CE3521740E6E40064A6C0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		047CE3541740E6E90064A6C0 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
-		047CE3561740E91A0064A6C0 /* list.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = list.txt; sourceTree = "<group>"; };
 		047CE3591740E9960064A6C0 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
 		047CE35A1740E9960064A6C0 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		047CE35C1740FAFA0064A6C0 /* LZZUniversal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZZUniversal.h; sourceTree = "<group>"; };
@@ -257,7 +255,6 @@
 				047CE30B1740E1390064A6C0 /* LZZDatabaseManager.m */,
 				047CE35C1740FAFA0064A6C0 /* LZZUniversal.h */,
 				047CE35D1740FAFA0064A6C0 /* LZZUniversal.m */,
-				047CE3561740E91A0064A6C0 /* list.txt */,
 				04F0152117428BD30025AA36 /* LZZSettingViewController.h */,
 				04F0152217428BD30025AA36 /* LZZSettingViewController.m */,
 			);
@@ -493,7 +490,6 @@
 				047CE2F61740D4C70064A6C0 /* Default-568h@2x.png in Resources */,
 				047CE3051740DE7F0064A6C0 /* buttomline.png in Resources */,
 				047CE3061740DE7F0064A6C0 /* topline.png in Resources */,
-				047CE3571740E91A0064A6C0 /* list.txt in Resources */,
 				04E6CDFB1741E13100079CDB /* back.png in Resources */,
 				04E6CDFF1741E37500079CDB /* headBottomLine.png in Resources */,
 				04E6CE011741EEC500079CDB /* imagePlaceholder.png in Resources */,

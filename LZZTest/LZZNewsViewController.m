@@ -20,6 +20,15 @@
     UIScrollView *_scrollView;
 }
 
+- (void)dealloc
+{
+    self.newsCategory = nil;
+    self.newsContent = nil;
+    self.newsTime = nil;
+    self.newsTitle = nil;
+    [super dealloc];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
