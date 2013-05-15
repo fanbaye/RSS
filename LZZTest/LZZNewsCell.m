@@ -7,6 +7,7 @@
 //
 
 #import "LZZNewsCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation LZZNewsCell
 
@@ -59,12 +60,13 @@
         [_newsSubTitleLabel release];
         [_newsTimeLabel release];
         
-//        _newsImageView.contentMode = UIViewContentModeScaleAspectFit;
+        _newsImageView.layer.cornerRadius = 6;
+        _newsImageView.layer.masksToBounds = YES;
         
         _newsTitleLabel.font = [UIFont systemFontOfSize:15];
         
         _newsSubTitleLabel.font = [UIFont systemFontOfSize:11];
-        _newsSubTitleLabel.textColor = [UIColor grayColor];
+        _newsSubTitleLabel.textColor = [UIColor colorWithRed:135.0/255.0 green:135.0/255.0 blue:135.0/255.0 alpha:1];
         _newsSubTitleLabel.numberOfLines = 0;
         _newsSubTitleLabel.lineBreakMode = NSLineBreakByWordWrapping;
         

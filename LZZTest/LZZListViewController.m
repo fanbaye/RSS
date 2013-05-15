@@ -63,6 +63,7 @@
 	// Do any additional setup after loading the view.
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, 320, 480-44-20)];
+    _tableView.scrollsToTop = YES;
     _tableView.backgroundColor = [UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:1];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -97,6 +98,11 @@
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     if (![ud objectForKey:@"isFirstOpenApp"]) {
         _isLoading = YES;
+        
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:nil message:@"首次加载，请稍候" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+        [av show];
+        [av release];
+        
         [self getNewsFromInternet];
         [ud setBool:YES forKey:@"isFirstOpenApp"];
         [ud synchronize];
@@ -217,6 +223,8 @@
     if (!cell) {
         cell = [[[LZZNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        cell.selectedBackgroundView = [[[UIView alloc] init] autorelease];
+        cell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:211.0/255.0 green:211.0/255.0 blue:211.0/255.0 alpha:1];
     }
     LZZNewsItem *news = [_dataArray objectAtIndex:indexPath.row];
     cell.newsTitleLabel.text = news.newsTitle;

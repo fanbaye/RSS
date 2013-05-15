@@ -46,7 +46,7 @@
     // 再找句号
     NSRange range = [tmp rangeOfString:@"。"];
     if (!range.length) {
-        return @"只有图片，请欣赏图片吧";
+        return @"暂无简介，请看内页详情哦";
     }
     tmp = [tmp substringToIndex:range.location + 1];
     // 倒序找第一个标识
@@ -93,7 +93,7 @@
         NSRange rangeRight = [content rangeOfString:@"</p>"];
         NSString *tmp = [content substringWithRange:NSMakeRange(rangeLeft.location, rangeRight.location - rangeLeft.location + 4)];
         
-        if ([tmp rangeOfString:@"chcom"].length) {
+        if ([tmp rangeOfString:@"chcom"].length || [tmp rangeOfString:@"<div"].length || [tmp rangeOfString:@"span"].length) {
             content = [content substringFromIndex:rangeRight.location + 3];
             rangeLeft = [content rangeOfString:@"<p"];
             continue;
@@ -178,7 +178,7 @@
     return mStr;
 }
 
-// 得到正文一个段落
+// 得到段落的内容
 + (NSString *)getDescriptionFromContent:(NSString *)content
 {
     NSRange rangeLeft = [content rangeOfString:@">"];
