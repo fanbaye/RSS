@@ -153,6 +153,11 @@
 
 - (void)changeViewController:(int)newsId
 {
+    // 防止内存泄露
+    for (UIView *view in _scrollView.subviews) {
+        [view removeFromSuperview];
+    }
+    
     LZZDatabaseManager *db = [[LZZDatabaseManager alloc] init];
     NSArray *array = [[NSArray alloc] initWithArray:[db getThreeNews:newsId]];
 
