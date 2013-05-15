@@ -186,5 +186,38 @@
     return [content substringWithRange:NSMakeRange(rangeLeft.location + 1, rangeRight.location - rangeLeft.location - 1)];
 }
 
-
+/*
+ // 得到内容简介
+ + (NSString *)newsSubTitleFromContent:(NSString *)content
+ {
+ 
+ // 先找句号
+ NSRange range = [content rangeOfString:@"。"];
+ if (!range.length) {
+ return @"暂无简介，请看内页详情哦";
+ }
+ 
+ content = [content substringToIndex:range.location + 1];
+ // 倒序找第一个标识
+ NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@";>"];
+ range = [content rangeOfCharacterFromSet:set options:NSBackwardsSearch];
+ content = [content substringFromIndex:range.location + 1];
+ 
+ // 去除不知名的字符 和　（一共两个字符，后面那个不是空格，不知道是什么）
+ NSCharacterSet *LCset = [NSCharacterSet characterSetWithCharactersInString:@" 　\n"];
+ range = [content rangeOfCharacterFromSet:LCset];
+ while (range.length) {
+ content = [content substringFromIndex:1];
+ range = [content rangeOfCharacterFromSet:LCset];
+ }
+ 
+ // 如果第一句太长就截断
+ if ([content length] < 29) {
+ return content;
+ }else{
+ return [NSString stringWithFormat:@"%@...", [content substringToIndex:28]];
+ }
+ 
+ }
+ */
 @end
