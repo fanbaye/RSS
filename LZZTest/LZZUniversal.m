@@ -145,7 +145,7 @@
     // 有趣些的时间显示格式
     NSTimeInterval time = [date timeIntervalSinceNow];
     time = -time;
-    if (time < 60*30) {
+    if (time < 60*60) {
         return @"刚刚";
     }else if (time < 60*60*24){
         return [NSString stringWithFormat:@"%d个小时前", (int)time/(60*60)];

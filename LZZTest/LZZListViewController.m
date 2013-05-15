@@ -89,8 +89,8 @@
     [headView release];
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(275, 5, 50, 34);
-    [btn setImage:[UIImage imageNamed:@"setbottom"] forState:UIControlStateNormal];
+    btn.frame = CGRectMake(287, 10, 21, 23);
+    [btn setImage:[UIImage imageNamed:@"settingbottom"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(settingClick) forControlEvents:UIControlEventTouchUpInside];
     [headView addSubview:btn];
     
